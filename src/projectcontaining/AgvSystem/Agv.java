@@ -1,6 +1,6 @@
 package projectcontaining.AgvSystem;
 
-import projectcontaining.Time;
+import projectcontaining.DateTime;
 import projectcontaining.Update;
 import projectcontaining.locations.Location;
 import projectcontaining.xmlparser.ContainerData;
@@ -117,7 +117,7 @@ public class Agv implements Update {
     }
 
     @Override
-    public void update(Time time, Time timeDif) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(DateTime time, DateTime interval) {
+        
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package projectcontaining;
 
 /**
@@ -15,5 +11,9 @@ public class ProjectContaining {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Controller contr = new Controller();
+        
+        contr.test();
     }
 }

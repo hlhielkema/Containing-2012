@@ -3,7 +3,7 @@ package projectcontaining.xmlparser;
 
 
 /**
- * A data object to store a combination of a date and a time.
+ * A data object to store a date
  * @author Hielke Hielkema
  */
 public class Date {

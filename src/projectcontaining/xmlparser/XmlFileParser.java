@@ -21,11 +21,11 @@ public class XmlFileParser {
     
     public static List<ContainerData> parseXmlFile(String path) {
         try {
-            
-
+            // Create a DocumentBuilderFactory
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            
+            // Create a list to store the container data
             List<ContainerData> containers = new ArrayList<>();
-        
 
             //Using factory get an instance of document builder
             DocumentBuilder db = dbf.newDocumentBuilder();

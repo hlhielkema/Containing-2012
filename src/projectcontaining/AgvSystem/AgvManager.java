@@ -7,7 +7,7 @@ package projectcontaining.AgvSystem;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import projectcontaining.Time;
+import projectcontaining.DateTime;
 import projectcontaining.Update;
 
 /**
@@ -110,7 +110,10 @@ public class AgvManager implements Update {
     }
 
     @Override
-    public void update(Time time, Time timeDif) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(DateTime time, DateTime interval) {
+        int len = this._agvs.size();
+        for(int i = 0; i < len; i++) {
+            this._agvs.get(i).update(time, interval);
+        }
     }
 }

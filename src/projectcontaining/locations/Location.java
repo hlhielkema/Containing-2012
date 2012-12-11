@@ -1,5 +1,6 @@
 package projectcontaining.locations;
 
+import java.util.List;
 import projectcontaining.AgvSystem.Agv;
 import projectcontaining.xmlparser.ContainerData;
 
@@ -8,7 +9,6 @@ import projectcontaining.xmlparser.ContainerData;
  * @author Hielke Hielkema
  */
 public interface Location {
-    
     /**
      * Asks the Platform to put the container on the agv and call agv.agvLoaded() when done
      * @param sender the agv that does the request
@@ -23,6 +23,18 @@ public interface Location {
      */
     public void setContainer(Agv sender, ContainerData container);
 
+    /**
+     * push containers to the locations that are arrived
+     * @param containers the containers that arrive
+     */
+    public void pushArrivedContainers(List<ContainerData> containers);
+    
+    /**
+     * read the containers from the location
+     * @return a list containing all containers on the location
+     */
+    public List<ContainerData> getContainers();
+    
     /**
      * Reset all data
      */

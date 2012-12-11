@@ -1,13 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package projectcontaining;
 
 /**
- *
+ * An interface for updates
  * @author hielkehielkema93
  */
 public interface Update {
-    public void update(Time time, Time timeDif);
+    
+    /**
+     * A method called when the object needs to update
+     * @param time the current time
+     * @param interval the interval since the last update
+     */
+    public void update(DateTime time, DateTime interval);
 }

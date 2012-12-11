@@ -4,6 +4,7 @@ package projectcontaining.xmlparser;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import projectcontaining.DateTime;
 
 /**
  * A data object to store all the information of a container
@@ -19,8 +20,8 @@ public class ContainerData {
     // Enter
     Point3D _location;
     Date _enterDate;
-    float _enterTimeFrom;
-    float _enterTimeTo;
+    Time _enterTimeFrom;
+    Time _enterTimeTo;
     String _enterTransportType;
     String _enterCompany;
     
@@ -30,8 +31,8 @@ public class ContainerData {
     
     // Leave
     Date _leaveDate;
-    float _leaveTimeFrom;
-    float _leaveTimeTo;
+    Time _leaveTimeFrom;
+    Time _leaveTimeTo;
     String _leaveTransportType;
     String _leaveCompany;
     
@@ -84,27 +85,35 @@ public class ContainerData {
     }
     
     /**
-     * Get the date when the container entered
-     * @return the date when the container entered
-     */
-    public Date getEnterDate() {
-        return this._enterDate;
-    }
-    
-    /**
      * Get the enter start time of the container
      * @return the enter time of the container start time
      */
-    public float getEnterTimeFrom() {
+    public Time getEnterTimeFrom() {
         return this._enterTimeFrom;
+    }
+    
+    /**
+     * Get the enter start DateTime of the container
+     * @return the enter start DateTime
+     */
+    public DateTime getEnterDateTimeFrom() {
+        return new DateTime(this._enterDate, this._enterTimeFrom);
     }
     
     /**
      * Get the enter end time of the container
      * @return the enter time of the container end time
      */
-    public float getEnterTimeTo() {
+    public Time getEnterTimeTo() {
         return this._enterTimeTo;
+    }
+    
+    /**
+     * Get the enter start DateTime of the container
+     * @return the enter start DateTime
+     */
+    public DateTime getEnterDateTimeTo() {
+        return new DateTime(this._enterDate, this._enterTimeTo);
     }
     
     /**
@@ -138,29 +147,37 @@ public class ContainerData {
     public int getContainerNumber() {
         return this._containerNumber;
     }
-
-    /**
-     * Get the date when the container leaved
-     * @return the date when the container leaved
-     */
-    public Date getLeaveDate() {
-        return this._leaveDate;
-    }
     
     /**
      * Get the leave start time of the container
      * @return the leave time of the container start time
      */
-    public float getLeaveTimeFrom() {
+    public Time getLeaveTimeFrom() {
         return this._leaveTimeFrom;
+    }
+    
+    /**
+     * Get the leave start DateTime of the container
+     * @return the leave start DateTime
+     */
+    public DateTime getLeaveDateTimeFrom() {
+        return new DateTime(this._leaveDate, this._leaveTimeFrom);
     }
     
     /**
      * Get the leave end time of the container
      * @return the leave time of the container end time
      */
-    public float getLeaveTimeTo() {
+    public Time getLeaveTimeTo() {
         return this._leaveTimeTo;
+    }
+    
+    /**
+     * Get the leave end DateTime of the container
+     * @return the leave end DateTime
+     */
+    public DateTime getLeaveDateTimeTo() {
+        return new DateTime(this._leaveDate, this._leaveTimeTo);
     }
     
     /**
@@ -284,7 +301,7 @@ public class ContainerData {
      * Set the enter start time
      * @param time the enter start time
      */
-    public void setEnterTimeFrom(float time) {
+    public void setEnterTimeFrom(Time time) {
         this._enterTimeFrom = time;
     }
     
@@ -292,7 +309,7 @@ public class ContainerData {
      * Set the enter end time
      * @param time the enter start time
      */
-    public void setEnterTimeTo(float time) {
+    public void setEnterTimeTo(Time time) {
         this._enterTimeTo = time;
     }
     
@@ -340,7 +357,7 @@ public class ContainerData {
      * Set the leave start time
      * @param time the leave start time
      */
-    public void setLeaveTimeFrom(float time) {
+    public void setLeaveTimeFrom(Time time) {
         this._leaveTimeFrom = time;
     }
     
@@ -348,7 +365,7 @@ public class ContainerData {
      * Set the leave end time
      * @param time the leave start time
      */
-    public void setLeaveTimeTo(float time) {
+    public void setLeaveTimeTo(Time time) {
         this._leaveTimeTo = time;
     }
     
@@ -664,7 +681,7 @@ public class ContainerData {
                                                     float value = Float.parseFloat(sValue);
 
                                                     // Set the value
-                                                    this.setEnterTimeFrom(value);
+                                                    this.setEnterTimeFrom(new Time(value));
 
                                                     // Break
                                                     break;
@@ -688,7 +705,7 @@ public class ContainerData {
                                                     float value = Float.parseFloat(sValue);
 
                                                     // Set the value
-                                                    this.setEnterTimeTo(value);
+                                                    this.setEnterTimeTo(new Time(value));
 
                                                     // Break
                                                     break;
@@ -1050,7 +1067,7 @@ public class ContainerData {
                                                     float value = Float.parseFloat(sValue);
 
                                                     // Set the value
-                                                    this.setLeaveTimeFrom(value);
+                                                    this.setLeaveTimeFrom(new Time(value));
 
                                                     // Break
                                                     break;
@@ -1074,7 +1091,7 @@ public class ContainerData {
                                                     float value = Float.parseFloat(sValue);
 
                                                     // Set the value
-                                                    this.setLeaveTimeTo(value);
+                                                    this.setLeaveTimeTo(new Time(value));
 
                                                     // Break
                                                     break;

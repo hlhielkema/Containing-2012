@@ -84,6 +84,5 @@ public class Point3D {
     }
     
     //</editor-fold>
-    
-    
+        
 }
