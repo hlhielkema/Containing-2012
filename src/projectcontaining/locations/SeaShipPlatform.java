@@ -7,7 +7,6 @@ package projectcontaining.locations;
 import java.util.List;
 import projectcontaining.AgvSystem.Agv;
 import projectcontaining.DateTime;
-import projectcontaining.DateTime;
 import projectcontaining.Update;
 import projectcontaining.xmlparser.ContainerData;
 

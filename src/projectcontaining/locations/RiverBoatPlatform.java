@@ -4,45 +4,98 @@
  */
 package projectcontaining.locations;
 
+import ProjectContaining.locations.Crane;
 import java.util.List;
+import java.util.ArrayList;
 import projectcontaining.AgvSystem.Agv;
 import projectcontaining.DateTime;
 import projectcontaining.Update;
 import projectcontaining.xmlparser.ContainerData;
-
+import projectcontaining.xmlparser.Point3D;
 /**
  *
  * @author Gebruiker
  */
 public class RiverBoatPlatform implements Location, Update {
 
+    List<Crane> _cranes = new ArrayList();
+    List<ContainerData> _containers = new ArrayList();
+    public RiverBoatPlatform()
+    {
+       Crane crane = new Crane(0);
+       _cranes.add(crane);
+       crane = new Crane(1);
+       _cranes.add(crane);
+    }
+    
     @Override
-    public void getContainer(Agv sender, ContainerData container) {
-
+    public void getContainer(Agv sender, ContainerData container)
+    {
+        if (getDoneCrane() == null)
+            return;
+        //sender.setData(container);
+        getDoneCrane().removeContainer();
     }
 
     @Override
-    public void setContainer(Agv sender, ContainerData container) {
-
+    public void setContainer(Agv sender, ContainerData container)
+    {
+        if (getIdleCrane() == null)
+            return;
+        int x = container.getLocation().getX();
+        getIdleCrane().setContainer(container, x);
     }
 
     @Override
     public void reset() {
 
     }
-
-    @Override
-    public void update(DateTime time, DateTime interval) {
-
+    
+    private Crane getDoneCrane()
+    {
+        for (Crane crane : _cranes)
+        {
+            if (crane.getProgress() == 1)
+            { 
+                return crane;
+            }
+        }
+        return null;
+    }
+    
+    private Crane getIdleCrane()
+    {
+        for (Crane crane : _cranes)
+        {
+            if (!crane._isActive)
+            {
+                return crane;
+            }
+        }
+        return null;
     }
     
     @Override
+    public void update(DateTime time, DateTime interval)
+    {
+        if (_containers.size() > 0 && getIdleCrane() != null)
+        {
+            ContainerData container = _containers.get(0);
+            Point3D position  = container.getLocation();
+            int x  = position.getX();
+            Crane crane = getIdleCrane();
+            crane.setContainer(_containers.get(0), x);
+        }
+    } 
+    
+    @Override
     public List<ContainerData> getContainers() {
-        return null;
+        return _containers;
     }
 
     @Override
-    public void pushArrivedContainers(List<ContainerData> containers) {
-  
+    public void pushArrivedContainers(List<ContainerData> containers)
+    {
+        _containers.addAll(containers);
     }
 }
