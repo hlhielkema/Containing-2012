@@ -32,7 +32,7 @@ public class TruckPlatform implements Location, Update {
     {
         if (getDoneCrane() == null)
             return;
-        //sender.setData(container);
+        sender.agvLoaded();
         getDoneCrane().removeContainer();
     }
 
@@ -43,10 +43,12 @@ public class TruckPlatform implements Location, Update {
             return;
         int x = container.getLocation().getX();
         getIdleCrane().setContainer(container, x);
+        sender.agvUnloaded();
     }
 
     @Override
-    public void reset() {
+    public void reset() 
+    {
 
     }
     
