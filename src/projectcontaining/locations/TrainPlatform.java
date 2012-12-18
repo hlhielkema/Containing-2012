@@ -4,6 +4,7 @@
  */
 package projectcontaining.locations;
 
+import ProjectContaining.locations.Crane;
 import java.util.ArrayList;
 import java.util.List;
 import projectcontaining.AgvSystem.Agv;
@@ -18,14 +19,15 @@ import projectcontaining.xmlparser.Point3D;
  */
 public class TrainPlatform implements Location, Update {
 
-       List<ProjectContaining.locations.Crane> _cranes = new ArrayList();
+    List<ProjectContaining.locations.Crane> _cranes = new ArrayList();
     List<ContainerData> _containers = new ArrayList();
     public TrainPlatform()
     {
-       ProjectContaining.locations.Crane crane = new ProjectContaining.locations.Crane(0);
-       _cranes.add(crane);
-       crane = new ProjectContaining.locations.Crane(1);
-       _cranes.add(crane);
+       Crane crane = new ProjectContaining.locations.Crane(0);
+       for (int i =0;i<4;i++)
+       {
+            _cranes.add(crane); // create 4 cranes
+       }
     }
     
     @Override
@@ -35,7 +37,7 @@ public class TrainPlatform implements Location, Update {
         {
             return;
         }
-        //sender.setData(container);
+        sender.agvLoaded();
         getDoneCrane().removeContainer();
     }
 
@@ -48,11 +50,14 @@ public class TrainPlatform implements Location, Update {
         }
         int x = container.getLocation().getX();
         getIdleCrane().setContainer(container, x);
+        sender.agvUnloaded();
     }
 
     @Override
-    public void reset() {
-
+    public void reset() 
+    {
+        _cranes.clear();
+        _containers.clear();
     }
     
     private ProjectContaining.locations.Crane getDoneCrane()

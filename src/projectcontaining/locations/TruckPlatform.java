@@ -15,7 +15,7 @@ import projectcontaining.xmlparser.Point3D;
 
 /**
  *
- * @author Gebruiker
+ * @author Bart
  */
 public class TruckPlatform implements Location, Update {
 
@@ -23,8 +23,11 @@ public class TruckPlatform implements Location, Update {
     List<ContainerData> _containers = new ArrayList();
     public TruckPlatform()
     {
-       Crane crane = new ProjectContaining.locations.Crane(0);
-       _cranes.add(crane);
+       Crane crane = new Crane(0);
+       for (int i =0;i<20;i++)
+       {
+            _cranes.add(crane); // create 20 cranes
+       }
     }
     
     @Override
@@ -49,7 +52,8 @@ public class TruckPlatform implements Location, Update {
     @Override
     public void reset() 
     {
-
+        _cranes.clear();
+        _containers.clear();
     }
     
     private Crane getDoneCrane()
